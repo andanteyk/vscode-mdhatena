@@ -17,7 +17,18 @@
         "command": "vscode-mdhatena.mdhatena",
         "title": "Markdown to HatenaBlog md"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "MdHatena",
+      "properties": {
+        "mdHatena.replacements": {
+          "type": "string",
+          "default": "\\$\\$((.*\\r?\\n)*?)\\$\\$\n<div align=\"center\">[tex:$1]</div>\n\\$(.*?)\\$\n[tex:$1]\n\\r?\\n\n  \\n\n```(.*?)  \n```$1\n",
+          "description": "Specify the string before and after replacement.",
+          "editPresentation": "multilineText"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

@@ -25,13 +25,27 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let fullText = textEditor.document.getText();
 
+		let replacements: string[] =
+			(vscode.workspace.getConfiguration("mdHatena").get("replacements") as string ?? "")
+				.trimEnd().split("\n");
+		if (replacements.length % 2 === 1) {
+			vscode.window.showWarningMessage("Lines of `Replacements` must be even.\nCheck your configuration!");
+			return;
+		}
+
+		for (var i = 0; i < replacements.length; i += 2) {
+			fullText = fullText.replace(new RegExp(replacements[i + 0], "gm"), escapeToSpecial(replacements[i + 1]));
+		}
+
+		/*
 		fullText = fullText.replace(/\$\$((.*\r?\n)*?)\$\$/gm, '<div align="center">[tex:$1]</div>');
 		fullText = fullText.replace(/\$(.*?)\$/gm, '[tex:$1]');
 		fullText = fullText.replace(/\r?\n/gm, '  \n');
 		fullText = fullText.replace(/```(.*?)  /gm, '```$1');
+		*/
 
 		vscode.env.clipboard.writeText(fullText);
-		vscode.window.showInformationMessage("copied!");
+		vscode.window.showInformationMessage("Copied to clipboard!");
 	});
 
 	context.subscriptions.push(disposable);
@@ -50,4 +64,15 @@ function findAndReplace(editor: vscode.TextEditor, query: string | RegExp, repla
 		editBuilder.replace(new vscode.Range(editor.document.positionAt(0), editor.document.positionAt(editor.document.getText().length)),
 			fullText.replace(query, replaceWith));
 	});
+}
+
+function escapeToSpecial(str: string): string {
+	return str
+		.replace(/(?<!\\)\\"/g, '"')
+		.replace(/(?<!\\)\\b/g, '\b')
+		.replace(/(?<!\\)\\f/g, '\f')
+		.replace(/(?<!\\)\\n/g, '\n')
+		.replace(/(?<!\\)\\r/g, '\r')
+		.replace(/(?<!\\)\\t/g, '\t')
+		.replace(/\\/g, '\\');
 }
