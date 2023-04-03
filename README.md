@@ -1,71 +1,22 @@
-# vscode-mdhatena README
+# vscode-mdhatena
 
-This is the README for your extension "vscode-mdhatena". After writing up a brief description, we recommend including the following sections.
+通常の Markdown をはてなブログ用に変換する VSCode 拡張
 
-## Features
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ふつうの markdown → はてなブログ版 md への変換が毎度手間だったので、ついに vscode の拡張機能を作ってみるなど <a href="https://t.co/D07N5RNb9x">pic.twitter.com/D07N5RNb9x</a></p>&mdash; Andante (@andanteyk) <a href="https://twitter.com/andanteyk/status/1642782663101775872?ref_src=twsrc%5Etfw">April 3, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## How to use
 
-For example if there is an image subfolder under your extension project workspace:
+`Ctrl+Shift+P` → `Markdown to HatenaBlog md`
 
-\!\[feature X\]\(images/feature-x.png\)
+変換されたテキストがクリップボードにコピーされるので、はてなブログの投稿画面に貼り付けてください。
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+デフォルトでは下記の処理が行われます。
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+* `$` / `$$` 数式を `[tex:]` 記法に変換
+* 行末にスペース 2 個を追加して改行をテキスト通りにする
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+設定で置換の挙動を変更できます。  
+奇数行に置換前、偶数行に置換後のテキストを書いてください。上から順に処理されます。
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

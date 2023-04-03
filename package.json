@@ -18,6 +18,14 @@
         "title": "Markdown to HatenaBlog md"
       }
     ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "vscode-mdhatena.mdhatena",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    },
     "configuration": {
       "title": "MdHatena",
       "properties": {
