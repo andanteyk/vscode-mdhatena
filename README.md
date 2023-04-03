@@ -4,6 +4,12 @@
 
 https://twitter.com/andanteyk/status/1642782663101775872
 
+## Install
+
+https://github.com/andanteyk/vscode-mdhatena/releases/
+
+`vscode-mdhatena-*.vsix` をダウンロードして、 vscode の「拡張機能」タブにドラッグ＆ドロップしてください。
+
 ## How to use
 
 `Ctrl+Shift+P` → `Markdown to HatenaBlog md`
