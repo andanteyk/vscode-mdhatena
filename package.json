@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-mdhatena.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-mdhatena.mdhatena",
+        "title": "Markdown to HatenaBlog md"
       }
     ]
   },
