@@ -2,7 +2,7 @@
 
 通常の Markdown をはてなブログ用に変換する VSCode 拡張
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ふつうの markdown → はてなブログ版 md への変換が毎度手間だったので、ついに vscode の拡張機能を作ってみるなど <a href="https://t.co/D07N5RNb9x">pic.twitter.com/D07N5RNb9x</a></p>&mdash; Andante (@andanteyk) <a href="https://twitter.com/andanteyk/status/1642782663101775872?ref_src=twsrc%5Etfw">April 3, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+https://twitter.com/andanteyk/status/1642782663101775872
 
 ## How to use
 
