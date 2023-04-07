@@ -12,6 +12,8 @@ https://github.com/andanteyk/vscode-mdhatena/releases/
 
 ## How to use
 
+### Markdown to HatenaBlog md
+
 `Ctrl+Shift+P` → `Markdown to HatenaBlog md`
 
 変換されたテキストがクリップボードにコピーされるので、はてなブログの投稿画面に貼り付けてください。
@@ -20,6 +22,12 @@ https://github.com/andanteyk/vscode-mdhatena/releases/
 
 * `$` / `$$` 数式を `[tex:]` 記法に変換
 * 行末にスペース 2 個を追加して改行をテキスト通りにする
+
+### Selected CSV/TSV to Markdown Table
+
+`Ctrl+Shift+P` → `Selected CSV/TSV to Markdown Table`
+
+範囲選択している CSV/TSV の表が、 Markdown の表に変換されます。
 
 ## Extension Settings
 

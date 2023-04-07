@@ -2,7 +2,7 @@
   "name": "vscode-mdhatena",
   "displayName": "vscode-mdhatena",
   "description": "markdown to hatenablog's md",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "https://github.com/andanteyk/vscode-mdhatena/"
   },
@@ -19,12 +19,20 @@
       {
         "command": "vscode-mdhatena.mdhatena",
         "title": "Markdown to HatenaBlog md"
+      },
+      {
+        "command": "vscode-mdhatena.xsvtotable",
+        "title": "Selected CSV/TSV to Markdown Table"
       }
     ],
     "menus": {
       "commandPalette": [
         {
           "command": "vscode-mdhatena.mdhatena",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "vscode-mdhatena.xsvtotable",
           "when": "editorLangId == markdown"
         }
       ]

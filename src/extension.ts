@@ -49,6 +49,63 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+
+
+	context.subscriptions.push(vscode.commands.registerCommand('vscode-mdhatena.xsvtotable', () => {
+		let textEditor = vscode.window.activeTextEditor;
+		if (!textEditor) {
+			return;
+		}
+
+		let selectedText = textEditor.document.getText(textEditor.selection);
+		if (!selectedText) {
+			return;
+		}
+
+		let lines = selectedText.split("\n").filter(e => e.trim().length > 0);
+		let cells: string[][] = new Array();
+		let separator = lines[0].indexOf("\t") >= 0 ? "\t" : ",";
+		let cellWidth: number[] = new Array();
+		for (var i = 0; i < lines.length; i++) {
+			cells[i] = lines[i].trim().split(separator).filter(e => e);
+
+			for (var c = 0; c < cells[i].length; c++) {
+				cellWidth[c] = Math.max(getWidth(cells[i][c]), cellWidth[c] ? cellWidth[c] : 1);
+			}
+		}
+
+		var result = "";
+		for (var i = 0; i < cells.length; i++) {
+			result += "| ";
+
+			for (var c = 0; c < cellWidth.length; c++) {
+				let width = getWidth(cells[i][c]);
+				for (var k = 0; k < cellWidth[c] - width; k++) {
+					result += " ";
+				}
+				result += cells[i][c] ? cells[i][c] : "";
+				result += c === cellWidth.length - 1 ? " |" : " | ";
+			}
+
+			result += "\n";
+			if (i === 0) {
+				result += "|-";
+
+				for (var c = 0; c < cellWidth.length; c++) {
+					for (var k = 0; k < cellWidth[c] - 1; k++) {
+						result += "-";
+					}
+					result += c === cellWidth.length - 1 ? "-:|" : "-:|-";
+				}
+				result += "\n";
+			}
+		}
+
+		textEditor.edit(editBuilder => {
+			editBuilder.replace(textEditor!.selection, result);
+		});
+	}));
 }
 
 // This method is called when your extension is deactivated
@@ -75,4 +132,17 @@ function escapeToSpecial(str: string): string {
 		.replace(/(?<!\\)\\r/g, '\r')
 		.replace(/(?<!\\)\\t/g, '\t')
 		.replace(/\\/g, '\\');
+}
+
+function getWidth(str: string): number {
+	var len = 0;
+	if (!str) {
+		return 0;
+	}
+
+	for (var i = 0; i < str.length; i++) {
+		var c = str.charCodeAt(i);
+		len += (c <= 0x7f || (0xff61 <= c && c <= 0xffdc)) ? 1 : 2;
+	}
+	return len;
 }
