@@ -23,11 +23,12 @@ https://github.com/andanteyk/vscode-mdhatena/releases/
 * `$` / `$$` 数式を `[tex:]` 記法に変換
 * 行末にスペース 2 個を追加して改行をテキスト通りにする
 
-### Selected CSV/TSV to Markdown Table
+### Selected CSV/TSV <-> Markdown Table
 
-`Ctrl+Shift+P` → `Selected CSV/TSV to Markdown Table`
+`Ctrl+Shift+P` → `Selected CSV/TSV <-> Markdown Table`
 
-範囲選択している CSV/TSV の表が、 Markdown の表に変換されます。
+範囲選択している CSV/TSV の表を、 Markdown の表に変換します。  
+また、 Markdown の表を TSV に変換します。
 
 ## Extension Settings
 

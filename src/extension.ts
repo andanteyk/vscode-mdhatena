@@ -65,31 +65,44 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let lines = selectedText.split("\n").filter(e => e.trim().length > 0);
 		let cells: string[][] = new Array();
-		let separator = lines[0].indexOf("\t") >= 0 ? "\t" : ",";
+		let separator = [",", "\t", "|"].sort((a, b) =>
+			Array.from(lines[0]).filter(c => c === b).length -
+			Array.from(lines[0]).filter(c => c === a).length)[0];
 		let cellWidth: number[] = new Array();
 		for (var i = 0; i < lines.length; i++) {
-			cells[i] = lines[i].trim().split(separator).filter(e => e);
+			cells[i] = lines[i].trim().split(separator).filter(e => e).map(e => e.trim());
 
 			for (var c = 0; c < cells[i].length; c++) {
 				cellWidth[c] = Math.max(getWidth(cells[i][c]), cellWidth[c] ? cellWidth[c] : 1);
 			}
 		}
 
+		let tableLeft = (separator === "|") ? "" : "| ";
+		let tableMiddle = (separator === "|") ? "\t" : " | ";
+		let tableRight = (separator === "|") ? "" : " |";
+
 		var result = "";
 		for (var i = 0; i < cells.length; i++) {
-			result += "| ";
+			if (separator === "|" && i === 1) {
+				continue;
+			}
+
+			result += tableLeft;
 
 			for (var c = 0; c < cellWidth.length; c++) {
-				let width = getWidth(cells[i][c]);
-				for (var k = 0; k < cellWidth[c] - width; k++) {
-					result += " ";
+				if (separator !== "|") {
+					let width = getWidth(cells[i][c]);
+					for (var k = 0; k < cellWidth[c] - width; k++) {
+						result += " ";
+					}
 				}
 				result += cells[i][c] ? cells[i][c] : "";
-				result += c === cellWidth.length - 1 ? " |" : " | ";
+				result += c === cellWidth.length - 1 ? tableRight : tableMiddle;
 			}
 
 			result += "\n";
-			if (i === 0) {
+
+			if (separator !== "|" && i === 0) {
 				result += "|-";
 
 				for (var c = 0; c < cellWidth.length; c++) {

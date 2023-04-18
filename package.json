@@ -2,7 +2,7 @@
   "name": "vscode-mdhatena",
   "displayName": "vscode-mdhatena",
   "description": "markdown to hatenablog's md",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "url": "https://github.com/andanteyk/vscode-mdhatena/"
   },
@@ -22,7 +22,7 @@
       },
       {
         "command": "vscode-mdhatena.xsvtotable",
-        "title": "Selected CSV/TSV to Markdown Table"
+        "title": "Selected CSV/TSV <-> Markdown Table"
       }
     ],
     "menus": {
